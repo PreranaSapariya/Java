@@ -1,1 +1,75 @@
+class Employee{ //class declaration
 
+	long employeeId; 
+	String employeename;
+	String employeeAddress;
+	long employeePhone;
+	double basicSalary;
+	double specialAllowance = 250.80;
+	double Hra = 1000.50;
+
+	public Employee(long employeeId,String employeename,String employeeAddress,long employeePhone,double basicSalary,double specialAllowance,double Hra){ //creating parameterised constructor of Employee class
+        this.employeeId = employeeId; //using this keyword to specify variables of same class
+		this.employeename = employeename;
+		this.employeeAddress = employeeAddress;
+		this.employeePhone = employeePhone;
+		
+	}
+	
+	public void calculateSalary (){ //creating method to calculate salary
+		double salary = basicSalary + (basicSalary * specialAllowance/100) + ( basicSalary * Hra/100); //logic to calculate salary
+		System.out.println(salary); // this prints the salary in output window
+	}
+	
+	public void calculateTransportAllowance (){ //creating method to calculate transport allowance for all the other employees
+		double transportAllowance = 10*basicSalary/100; //logic to calculate transport allowance
+		System.out.println(transportAllowance); //this prints the transport allowance
+	}
+	
+}
+
+class Manager extends Employee{ //creating sub class Manager that extends Employee class
+	
+	public Manager(long employeeId,String employeename,String employeeAddress,long employeePhone,double basicSalary,double specialAllowance,double Hra) { //creating parameterised constructor of Manager class
+		super(employeeId,employeename,employeeAddress,employeePhone,basicSalary,specialAllowance,Hra); //using super keyword to access parent class properties
+		this.employeeId = employeeId; //using this keyword to specify variables of same class
+		this.employeename = employeename;
+		this.employeeAddress = employeeAddress;
+		this.employeePhone = employeePhone;
+		this.basicSalary = basicSalary;
+		this.Hra = Hra;
+	}
+	
+	public void calculateTransportAllowance() { //creating method to calculate transport allowance for manager
+		double transportAllowance = 0.15 * basicSalary; //logic to calculate transport allowance
+		System.out.println(transportAllowance); //this prints the transport allowance
+		
+	}
+
+}
+class Trainee extends Employee{ //creating sub class Trainee that extends Employee class
+	
+	public Trainee(long employeeId,String employeename,String employeeAddress,long employeePhone,double basicSalary,double specialAllowance,double Hra) { //creating parameterised constructor of Trainee class
+		super(employeeId,employeename,employeeAddress,employeePhone,basicSalary,specialAllowance,Hra); //using super keyword to access parent class properties
+		this.employeeId = employeeId;
+		this.employeename = employeename;
+		this.employeeAddress = employeeAddress;
+		this.employeePhone = employeePhone;
+		this.basicSalary = basicSalary;
+	}
+	
+
+	
+}
+
+class InheritanceActivity{ //creating class that contains main method
+	public static void main(String [] args) { //main method
+		Manager m = new Manager(126534,"Peter","Chennai India",237844,65000,250.80,1000.50); //creating object of Manager class and passing values inside the parameter of the constructor
+		m.calculateSalary(); //invoking calculateSalary method from Enployee class with object
+		m.calculateTransportAllowance(); // invoking calculateTransportAllowance method with object
+		
+		Trainee t = new Trainee(29846,"Jack","Mumbai India",442085,45000,250.80,1000.50); //creating object of Trainee class and passing values inside the parameter of the constructor		
+		t.calculateSalary(); //invoking calculateSalary method from Enployee class with object
+		t.calculateTransportAllowance(); // invoking calculateTransportAllowance method with object
+	}
+}
